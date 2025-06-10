@@ -7,7 +7,8 @@ import sklearn
 
 import os
 
-file_path = 'diamond.pkl'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR, 'models', 'diamond.pkl')
 if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
     print("File exists and is not empty.")
 else:
@@ -20,7 +21,7 @@ print(sys.version)
 
 from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
-model = pickle.load(open('diamond.pkl', 'rb'))
+model = pickle.load(open(file_path, 'rb'))
 @app.route('/',methods=['GET'])
 def Home():
     return render_template('index.html')
