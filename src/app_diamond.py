@@ -4,9 +4,12 @@ import requests
 import pickle
 import numpy as np
 import sklearn
+import os
 from sklearn.preprocessing import StandardScaler
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(os.path.dirname(BASE_DIR), 'models', 'diamond.pkl')
 app = Flask(__name__)
-model = pickle.load(open('diamond.pkl', 'rb'))
+model = pickle.load(open(MODEL_PATH, 'rb'))
 @app.route('/',methods=['GET'])
 def Home():
     return render_template('index.html')
